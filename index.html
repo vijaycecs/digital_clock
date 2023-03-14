@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="movie.css"> -->
+    <!-- <script src="movie.js" defer></script> -->
+    <title>Clock</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@800&display=swap');
+*{
+    margin: 0;
+    padding: 0; 
+    box-sizing: border-box;
+    font-family: 'Orbitron', sans-serif;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* min-height: 100vh; */
+    background: rgb(0, 0, 0);
+}
+#time{
+    display: flex;
+    gap: 40px;
+    color: rgb(255, 255, 255);
+}
+#time .circle{
+    position:relative;
+    top:300px;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#time div{
+    position: absolute;
+    text-align: center;
+    font-weight: 500;
+    font-size: 1.5em;
+}
+#time div span{
+    position: absolute;
+    transform: translate(-50%) translateY(20px);
+    font-size: 15px;
+    letter-spacing: 1px;
+
+}
+#time .circle svg{
+    position: relative;
+    width: 150px;
+    height: 150px;
+    transform :rotate(270deg) ;
+
+}
+#time .circle svg circle{
+    width: 100%;
+    height: 100%;
+    fill: transparent;
+    stroke: rgb(69, 71, 71);
+    stroke-width: 4;
+    transform: translate(5px,5px);
+}
+#time .circle svg circle:nth-child(2)
+{
+    stroke: var(--clr);
+    stroke-dasharray: 440 ;
+}
+.dot1{
+    position: absolute;
+    top: 360px;
+    left: 625px;
+}
+.dot2
+{
+    position: absolute;
+    top: 360px;
+    left: 810px;
+}
+.box{
+    position:absolute;
+    margin: 0px;
+    top: 230px;
+    width: 210px;
+    height: 210px;
+    width: 650px;
+    height: 300px;
+    box-shadow: 20px 14px 20px rgb(44, 43, 43);
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} 
+.box::before{
+    content: "";
+    background-image: conic-gradient(#00d9ff 20deg,transparent 120deg);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    animation: rotate 2s linear infinite ;
+}
+.box::after{
+    content: "";
+    width: 640px;
+    height: 290px;
+    background-color: black;
+    border-radius: 20px;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: aqua;
+    box-shadow: inset 20px 20px 20px black;
+}
+@keyframes rotate{
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+#ampm{
+    position: absolute;
+    top: -150px;
+    left: 80px;
+}
+.con{
+    color: rgb(255, 250, 250);
+}
+    </style>
+
+</head>
+<body>
+    <div class="box"></div>
+    <div id="time">
+        <div class="circle" style="--clr:rgb(0, 242, 250);">
+            <div class="dots hr_dot"></div>
+            <svg>
+                <circle cx="70" cy="70" r="70"></circle>
+               
+                <circle cx="70" cy="70" r="70" id="hh"></circle>
+            </svg>
+            <div id="hours">00</div>
+        </div>
+        <!-- <div class="dot1">:</div> -->
+        <div class="circle" style="--clr:rgb(230, 52, 52);">
+            <div class="dots min_dot"></div>
+            <svg>
+                <circle cx="70" cy="70" r="70"></circle>
+               
+                <circle cx="70" cy="70" r="70" id="mm"></circle>
+            </svg>
+            <div id="minutes">00</div>
+        </div>
+        <!-- <div class="dot2">:</div> -->
+        <div class="circle" style="--clr:rgb(0, 255, 72);">
+            <div class="dots sec_dot"></div>
+            <svg>
+                <circle cx="70" cy="70" r="70"></circle>
+                
+                <circle cx="70" cy="70" r="70" id="ss"></circle>
+            </svg>
+            <div id="seconds">00</div>
+            <div>
+                <span id="ampm"></span>
+            </div>
+        </div>  
+    </div>
+    </div>
+    <!-- <div class="con">
+        <div class="wra">
+            <p>
+                <span class="sec" id="sec">00</span>:
+                <span class="tens" id="tik">00</span>
+            </p><br>
+            <button class="btn-start">Start</button>
+            <button class="btn-stop">Stop</button>
+            <button class="btn-restart">Restart</button>
+        </div>
+    </div> -->
+
+    <script>
+        
+function displayTime(){
+        const dateTime=new Date();
+       // console.log(dateTime);
+
+        var h=dateTime.getHours()
+        var m=dateTime.getMinutes()
+        var s=dateTime.getSeconds()
+
+        let hh=document.getElementById('hh');
+        let mm=document.getElementById('mm');
+        let ss=document.getElementById('ss');
+        let ampm=document.getElementById('ampm');
+
+        if(h>12)
+        {
+            h=h-12;
+            ampm.innerHTML="PM"
+        }
+        else{
+            ampm.innerHTML="AM"
+        }
+
+        h=(h<10)? "0"+h:h;
+        m=(m<10)? "0"+m:m;
+        s=(s<10)? "0"+s:s;
+
+        document.getElementById('hours').innerHTML =h+"<br><span>Hours</span></br>";
+        document.getElementById('minutes').innerHTML =m+"<br><span>Minutes</span></br>";
+        document.getElementById('seconds').innerHTML =s+"<br><span>Seconds</span></br>";
+
+        hh.style.strokeDashoffset =440-(440 * h)/12;
+        mm.style.strokeDashoffset =440-(440 * m)/60;
+        ss.style.strokeDashoffset =440-(440 * s)/60;
+
+    }  
+            setInterval(displayTime,10);
+
+   
+            // let sec=00;
+            // let tens=00;
+            // console.log(btnStart)
+            // let getSeconds = document.querySelector('sec');
+            // let getTens =document.querySelector('tens');
+            
+            // let btnStart = document.querySelector('.btn-start');
+            // let btnStop = document.querySelector('.btn-stop');
+            // let btnRestart = document.querySelector('.btn-restart');
+
+            // btnStart.addEventListener('click',()=>
+            // {
+            //     tens++;
+            //     if(tens <=9)
+            //     {
+            //         getTens.innerHTML = '0' + tens ;
+            //     }
+            // })
+    
+    </script>
+</body>
+</html>
