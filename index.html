@@ -84,11 +84,9 @@ body{
     position:absolute;
     margin: 0px;
     top: 230px;
-    width: 210px;
-    height: 210px;
     width: 650px;
     height: 300px;
-    box-shadow: 20px 14px 20px rgb(0, 0, 0);
+    box-shadow: 0px 0px 100px 5px rgb(100, 98, 98);
     border-radius: 20px;
     overflow: hidden;
     display: flex;
@@ -97,9 +95,9 @@ body{
 } 
 .box::before{
     content: "";
-    background-image: conic-gradient(#00d9ff 20deg,transparent 120deg);
-    width: 100%;
-    height: 100%;
+    background-image: conic-gradient(rgb(2, 225, 255) 20deg,transparent 360deg);
+    width: 700px;
+    height: 700px;
     position: absolute;
     animation: rotate 2s linear infinite ;
 }
@@ -114,14 +112,15 @@ body{
     justify-content: center;
     align-items: center;
     color: aqua;
-    box-shadow: inset 0px 0px 2px rgb(94, 91, 91);
+    /* box-shadow: inset 0px 0px 20px 1px rgb(78, 77, 77); */
 }
 @keyframes rotate{
     0%{
         transform: rotate(0deg);
     }
+
     100%{
-        transform: rotate(360deg);
+        transform: rotate(-360deg);
     }
 }
 #ampm{
@@ -232,7 +231,7 @@ function displayTime(){
         var m=dateTime.getMinutes()
         var s=dateTime.getSeconds()
         var d=dateTime.getDate()
-        var m=dateTime.getDay()
+        var t=dateTime.getDay()
         var y=dateTime.getFullYear()
 
         let hh=document.getElementById('hh');
@@ -240,7 +239,7 @@ function displayTime(){
         let ss=document.getElementById('ss');
         let ampm=document.getElementById('ampm');
 
-        if(h>11)
+        if(h>12)
         {
             h=h-12;
 
@@ -249,16 +248,18 @@ function displayTime(){
         else{
             ampm.innerHTML="AM"
         }
+        
 
         h=(h<10)? "0"+h:h;
         m=(m<10)? "0"+m:m;
         s=(s<10)? "0"+s:s;
+        t=(t<10)? "0"+t:t;
 
         document.getElementById('hours').innerHTML =h+"<br><span>Hours</span></br>";
         document.getElementById('minutes').innerHTML =m+"<br><span>Minutes</span></br>";
         document.getElementById('seconds').innerHTML =s+"<br><span>Seconds</span></br>";
         document.getElementById('date').innerHTML = d;
-        document.getElementById('day').innerHTML = m;
+        document.getElementById('day').innerHTML = t;
         document.getElementById('year').innerHTML = y;
 
         hh.style.strokeDashoffset =440-(440 * h)/12;
@@ -266,7 +267,7 @@ function displayTime(){
         ss.style.strokeDashoffset =440-(440 * s)/60;
 
     }  
-            setInterval(displayTime,1000);
+            setInterval(displayTime,10);
 
    
             // let sec=00;
