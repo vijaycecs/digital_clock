@@ -88,8 +88,8 @@ body{
     height: 210px;
     width: 650px;
     height: 300px;
-    box-shadow: 20px 14px 20px rgb(44, 43, 43);
-    border-radius: 10px;
+    box-shadow: 20px 14px 20px rgb(0, 0, 0);
+    border-radius: 20px;
     overflow: hidden;
     display: flex;
     justify-content: center;
@@ -107,14 +107,14 @@ body{
     content: "";
     width: 640px;
     height: 290px;
-    background-color: black;
+    background-color: rgb(0, 0, 0);
     border-radius: 20px;
     position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
     color: aqua;
-    box-shadow: inset 20px 20px 20px black;
+    box-shadow: inset 0px 0px 2px rgb(94, 91, 91);
 }
 @keyframes rotate{
     0%{
@@ -131,6 +131,38 @@ body{
 }
 .con{
     color: rgb(255, 250, 250);
+}
+.b{
+    position: absolute;
+    top: 100px;
+    left: 200px;
+    width: 250px;
+    height: 100px;
+    /* border: solid 1px red; */
+    justify-content: center;
+    display:flex;
+    letter-spacing: 10px;
+}
+.d{
+    /* position: absolute;
+    top: 100px;
+    left: 830px; */
+    font-size: 30px; 
+    color: rgb(255, 255, 255);
+}
+.m{
+    /* position: absolute;
+    top: 100px;
+    left: 880px; */
+    font-size: 30px; 
+    color: rgb(230, 52, 52);
+}
+.y{
+    /* position: absolute;
+    top: 100px;
+    left: 945px; */
+    font-size: 30px; 
+    color: rgb(255, 255, 255);
 }
     </style>
 
@@ -171,7 +203,12 @@ body{
             </div>
         </div>  
     </div>
-    </div>
+    </div> 
+    <div class="b">
+    <div id="date" class="d"></div>
+    <div id="day" class="m"></div>
+    <div id="year" class="y"></div>
+</div>
     <!-- <div class="con">
         <div class="wra">
             <p>
@@ -188,20 +225,25 @@ body{
         
 function displayTime(){
         const dateTime=new Date();
-       // console.log(dateTime);
+       console.log(dateTime);
+       console.log(s);
 
         var h=dateTime.getHours()
         var m=dateTime.getMinutes()
         var s=dateTime.getSeconds()
+        var d=dateTime.getDate()
+        var m=dateTime.getDay()
+        var y=dateTime.getFullYear()
 
         let hh=document.getElementById('hh');
         let mm=document.getElementById('mm');
         let ss=document.getElementById('ss');
         let ampm=document.getElementById('ampm');
 
-        if(h>12)
+        if(h>11)
         {
             h=h-12;
+
             ampm.innerHTML="PM"
         }
         else{
@@ -215,13 +257,16 @@ function displayTime(){
         document.getElementById('hours').innerHTML =h+"<br><span>Hours</span></br>";
         document.getElementById('minutes').innerHTML =m+"<br><span>Minutes</span></br>";
         document.getElementById('seconds').innerHTML =s+"<br><span>Seconds</span></br>";
+        document.getElementById('date').innerHTML = d;
+        document.getElementById('day').innerHTML = m;
+        document.getElementById('year').innerHTML = y;
 
         hh.style.strokeDashoffset =440-(440 * h)/12;
         mm.style.strokeDashoffset =440-(440 * m)/60;
         ss.style.strokeDashoffset =440-(440 * s)/60;
 
     }  
-            setInterval(displayTime,10);
+            setInterval(displayTime,1000);
 
    
             // let sec=00;
