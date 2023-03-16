@@ -95,11 +95,11 @@ body{
 } 
 .box::before{
     content: "";
-    background-image: conic-gradient(rgb(2, 225, 255) 20deg,transparent 360deg);
+    background-image: conic-gradient(rgb(2, 225, 255) 10deg,transparent 270deg);
     width: 700px;
     height: 700px;
     position: absolute;
-    animation: rotate 2s linear infinite ;
+    animation: rotate 3s linear infinite ;
 }
 .box::after{
     content: "";
@@ -126,7 +126,7 @@ body{
 #ampm{
     position: absolute;
     top: -150px;
-    left: 80px;
+    left: 90px;
 }
 .con{
     color: rgb(255, 250, 250);
@@ -134,7 +134,7 @@ body{
 .b{
     position: absolute;
     top: 100px;
-    left: 200px;
+    left: 600px;
     width: 250px;
     height: 100px;
     /* border: solid 1px red; */
@@ -239,17 +239,16 @@ function displayTime(){
         let ss=document.getElementById('ss');
         let ampm=document.getElementById('ampm');
 
-        if(h>12)
+        if(h>12||h==12)
         {
             h=h-12;
-
+            h=12;
             ampm.innerHTML="PM"
         }
         else{
             ampm.innerHTML="AM"
         }
         
-
         h=(h<10)? "0"+h:h;
         m=(m<10)? "0"+m:m;
         s=(s<10)? "0"+s:s;
@@ -267,27 +266,7 @@ function displayTime(){
         ss.style.strokeDashoffset =440-(440 * s)/60;
 
     }  
-            setInterval(displayTime,10);
-
-   
-            // let sec=00;
-            // let tens=00;
-            // console.log(btnStart)
-            // let getSeconds = document.querySelector('sec');
-            // let getTens =document.querySelector('tens');
-            
-            // let btnStart = document.querySelector('.btn-start');
-            // let btnStop = document.querySelector('.btn-stop');
-            // let btnRestart = document.querySelector('.btn-restart');
-
-            // btnStart.addEventListener('click',()=>
-            // {
-            //     tens++;
-            //     if(tens <=9)
-            //     {
-            //         getTens.innerHTML = '0' + tens ;
-            //     }
-            // })
+            setInterval(displayTime,1000);
     
     </script>
 </body>
