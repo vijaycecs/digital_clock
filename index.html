@@ -112,7 +112,7 @@ body{
     justify-content: center;
     align-items: center;
     color: aqua;
-    /* box-shadow: inset 0px 0px 20px 1px rgb(78, 77, 77); */
+    box-shadow: inset 0px 0px 20px 1px rgb(78, 77, 77);
 }
 @keyframes rotate{
     0%{
@@ -219,10 +219,9 @@ function displayTime(){
         let ss=document.getElementById('ss');
         let ampm=document.getElementById('ampm');
 
-        if(h>12||h==12)
+        if(h>12)
         {
             h=h-12;
-            h=12;
             ampm.innerHTML="PM"
         }
         else{
