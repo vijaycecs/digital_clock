@@ -196,7 +196,7 @@ body{
     </div> 
     <div class="b">
     <div id="date" class="d"></div>
-    <div id="day" class="m"></div>
+    <div id="month" class="m"></div>
     <div id="year" class="y"></div>
 </div>
 
@@ -211,8 +211,9 @@ function displayTime(){
         var m=dateTime.getMinutes()
         var s=dateTime.getSeconds()
         var d=dateTime.getDate()
-        var t=dateTime.getDay()
+        var month=dateTime.getMonth()
         var y=dateTime.getFullYear()
+
 
         let hh=document.getElementById('hh');
         let mm=document.getElementById('mm');
@@ -231,14 +232,14 @@ function displayTime(){
         h=(h<10)? "0"+h:h;
         m=(m<10)? "0"+m:m;
         s=(s<10)? "0"+s:s;
-        t=(t<10)? "0"+t:t;
+        month=(month<10)? "0"+month:month;
 
         document.getElementById('hours').innerHTML =h+"<br><span>Hours</span></br>";
         document.getElementById('minutes').innerHTML =m+"<br><span>Minutes</span></br>";
         document.getElementById('seconds').innerHTML =s+"<br><span>Seconds</span></br>";
-        document.getElementById('date').innerHTML = d;
-        document.getElementById('day').innerHTML = t;
-        document.getElementById('year').innerHTML = y;
+        // document.getElementById('date').innerHTML = d;
+        // document.getElementById('month').innerHTML = month;
+        // document.getElementById('year').innerHTML = y;
 
         hh.style.strokeDashoffset =440-(440 * h)/12;
         mm.style.strokeDashoffset =440-(440 * m)/60;
